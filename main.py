@@ -42,27 +42,27 @@ def Hours():
     print("Total amount of hours rostered is "+ (strTotalHours) + ("hrs"))
 
 def GrossIncome():
-    grossIncome = calc1 + calc2 + calc3 + calc4 + calc5 + calc6
-    floGrossIncome = float(grossIncome)
-    forcedFormat = f"{floGrossIncome:.2f}"
-    final = str(forcedFormat)
+    strGrossIncome = calc1 + calc2 + calc3 + calc4 + calc5 + calc6
+    floGrossIncome = float(strGrossIncome)
+    roundingGrossIncome = f"{floGrossIncome:.2f}"
+    final = str(roundingGrossIncome)
     print("Estimated Gross Income ≈ $" + final)
     print("")
     return floGrossIncome
 
 
 def TaxCalculation(grossIncome):
-    annualIncome = grossIncome * 26
-    taxable = max(0, annualIncome - 18200)  # Ensures no negative tax
-    annualTax = taxable * 0.16
+    projectedAnnualIncome = grossIncome * 26
+    taxableIncome = max(0, projectedAnnualIncome - 18200)  # Ensures no negative tax
+    annualTax = taxableIncome * 0.16
 
-    medicareLevy = annualIncome * 0.02
+    medicareLevy = projectedAnnualIncome * 0.02
     totalTax = annualTax + medicareLevy
 
-    fortnightlyWitholding = round(totalTax / 26, 2)
-    netIncome = round(grossIncome - fortnightlyWitholding, 2)
+    fortnightlyTax = round(totalTax / 26, 2)
+    netIncome = round(grossIncome - fortnightlyTax, 2)
 
-    taxPrompt = "Tax Estimate ≈ $" + str(fortnightlyWitholding)
+    taxPrompt = "Tax Estimate ≈ $" + str(fortnightlyTax)
     netIncomePrompt = "Net Income ≈ $" + str(netIncome)
 
     print(taxPrompt)
@@ -70,6 +70,7 @@ def TaxCalculation(grossIncome):
     input("Press Enter to continue...")
 
 Hours()
-gross_income = GrossIncome()
-TaxCalculation(gross_income)
+calculationPassing = GrossIncome()
+TaxCalculation(calculationPassing)
 
+# End of main.py
