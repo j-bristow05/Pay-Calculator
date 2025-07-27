@@ -2,11 +2,13 @@ from ascii import *
 from rates import *
 
 asciiArt()
+#Inintial start prompt
 print("NOTE: This calculator is for Store Assistants at ALDI Australia. Rates are set to Store Assistant rates and any calculations are based on those rates.\n" \
 "If asked for any unit relating to time, format hours into decimals to the closest quarter of an hour. e.g. 5hrs45mins = 5.75hrs\n"
 "Input parameters can't do addition, please input the amount of hours using one number.")
 print("")
 
+#These 6 questions are used to calculate the hours worked in different time slots.
 questions = [
     "How many hours of work are rostered for weekdays after 7am & before 6pm?",
     "How many hours on weekdays or Saturdays, are rostered for a 6am start?",
@@ -16,6 +18,7 @@ questions = [
     "How many hours before 9am are rostered for Sundays?"
 ]
 
+#Adds the users input to the list.
 hours = []
 for question in questions:
     print(question)
@@ -35,12 +38,14 @@ calc4 = satBase * hours4
 calc5 = sunBase * hours5
 calc6 = sunBefore9AM * hours6
 
+# Function "Hours" calculates the toal number of hours worked and prints it.
 def Hours():
     totalHours = (hours1 + hours2 + hours3 + hours4 + hours5 + hours6)
     strTotalHours = str(totalHours)
     print("")
     print("Total amount of hours rostered is "+ (strTotalHours) + ("hrs"))
 
+# Function "GrossIncome" calculates the total gross income from the hours worked and the corresponding rates.
 def GrossIncome():
     strGrossIncome = calc1 + calc2 + calc3 + calc4 + calc5 + calc6
     floGrossIncome = float(strGrossIncome)
@@ -50,7 +55,8 @@ def GrossIncome():
     print("")
     return floGrossIncome
 
-
+# Function "Taxcalculation" uses static tax rates and the medicare levy to rougly calculate the tax on the gross income.
+# Results from this function and what you see on your pay slip may differ due to other factors, however this is the best estimate possible.
 def TaxCalculation(grossIncome):
     projectedAnnualIncome = grossIncome * 26
     taxableIncome = max(0, projectedAnnualIncome - 18200)  # Ensures no negative tax
