@@ -21,8 +21,17 @@ questions = [
 #Adds the users input to the list.
 hours = []
 for question in questions:
-    print(question)
-    hours.append(float(input()))
+    while True:
+        print(question)
+        user_input = input()
+        if user_input.strip() == "":
+            print("Input cannot be empty. Please enter a number.")
+            continue
+        try:
+            hours.append(float(user_input))
+            break
+        except ValueError:
+            print("Invalid input. Please enter a valid number.")    
 
 hours1 = hours[0]
 hours2 = hours[1] 
@@ -44,6 +53,7 @@ def Hours():
     strTotalHours = str(totalHours)
     print("")
     print("Total amount of hours rostered is "+ (strTotalHours) + ("hrs"))
+    print("")
 
 # Function "GrossIncome" calculates the total gross income from the hours worked and the corresponding rates.
 def GrossIncome():
@@ -52,7 +62,6 @@ def GrossIncome():
     roundingGrossIncome = f"{floGrossIncome:.2f}"
     final = str(roundingGrossIncome)
     print("Estimated Gross Income ≈ $" + final)
-    print("")
     return floGrossIncome
 
 # Function "Taxcalculation" uses static tax rates and the medicare levy to rougly calculate the tax on the gross income.
