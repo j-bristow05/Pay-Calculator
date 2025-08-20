@@ -82,7 +82,7 @@ def TaxCalculation(grossIncome):
 
     print(taxPrompt)
     print(netIncomePrompt)
-    input("Press Enter to continue...")
+    input("Press Enter to quit the program...")
 
 Hours()
 calculationPassing = GrossIncome()
